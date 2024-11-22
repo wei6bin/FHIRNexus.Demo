@@ -1,0 +1,47 @@
+@baseUrl=https://localhost:7074
+@applicationId=test-app
+
+POST {{baseUrl}}/ClinicalImpression
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+	"resourceType": "ClinicalImpression",
+  "extension": [
+    {
+      "url": "https://example.org/fhir/StructureDefinition/ClinicalImpression-CarePlan",
+      "valueReference": {
+        "reference": "CarePlan/1234",
+        "display": "Initial Care Plan"
+      }
+    }
+  ],
+	"status": "completed",
+	"subject": {
+		"reference": "Patient/example"
+	},
+  "note": [
+    {
+      "text": "Patient presents with fever and fatigue"
+    }
+  ]
+}
+
+
+###
+GET {{baseUrl}}/ClinicalImpression?note-content:contains=fever,breath
+X-Ihis-SourceApplication: {{applicationId}}
+
+###
+GET {{baseUrl}}/ClinicalImpression?note-content:contains=fever&note-content:contains=fatigue
+X-Ihis-SourceApplication: {{applicationId}}
+###
+GET {{baseUrl}}/ClinicalImpression?note-content:contains=fever,cough&note-content:contains=fatigue
+X-Ihis-SourceApplication: {{applicationId}}
+###
+GET {{baseUrl}}/ClinicalImpression?note-content:contains=fever,cough&note-content:contains=fatigue,breath
+X-Ihis-SourceApplication: {{applicationId}}
+
+###
+GET {{baseUrl}}/ClinicalImpression?ci-careplan=CarePlan/1234
+X-Ihis-SourceApplication: {{applicationId}}

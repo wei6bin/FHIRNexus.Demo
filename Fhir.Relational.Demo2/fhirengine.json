@@ -1,0 +1,43 @@
+{
+  "EnableHandlerAutoRegistration": true,
+  "PublicConformanceResources": true,
+  "UseFhirController": false,
+  "SystemPlugins": {
+    "Metadata": "Conformance",
+    "Merge": true,
+    "Validate": true,
+    "OpenTelemetryPrometheusMetrics": {
+      "AspNetCoreInstrumentation": true
+    },
+    "OpenTelemetryTracing": {
+      "ServiceName": true,
+      "AspNetCoreInstrumentation": true,
+      "SqlClientInstrumentation": {
+        "SetDbStatementForText": true
+      },
+      "OtlpExporter": true
+    },
+    "Authentication": "Fhir.Relational.Demo2.Security.HeadersAuthenticationHandler",
+    "ResourceRepositoryCache": {
+      "GlobalExpiration": "01:00:00",
+      "AllowCacheDisable": true
+    }
+  },
+  "Handlers": {
+    "Repository": {
+      "FhirDataStore<@Relational>": {
+        "ContextType": "Fhir.Relational.Demo2.Data.FhirEntityDbContext",
+        "UseSqlRelationalModels": {
+          "AutoCreateTables": false
+        },
+        "UseAutoMapperDataMapper": true,
+        "IncludeStandardSearchParams": true,
+        "ConnectionString": "Local",
+        "AllowedInteractions": [ "Create", "Read", "Vread", "Update", "Delete", "SearchType", "OperationType", "OperationInstance" ],
+        "AcceptedTypes": [
+          "Appointment", "Patient"
+        ]
+      }
+    }
+  }
+}

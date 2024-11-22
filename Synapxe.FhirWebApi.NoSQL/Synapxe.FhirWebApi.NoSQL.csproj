@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ProjectGuid>{0674C9BC-9C8B-45D0-81AA-DE9A78DE731A}</ProjectGuid>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Synapxe.FhirWebApi.NoSQL.IntegrationTests" />
+    </ItemGroup>
+    
+    <ItemGroup>
+    
+        <PackageReference Include="Ihis.FhirEngine.Data.SqlServer" Version="4.2.1" />
+        <PackageReference Include="Ihis.FhirEngine.Data.SqlServer.Extensions.Migration" Version="4.2.1" />
+        <PackageReference Include="Ihis.FhirEngine.Extensions.OpenTelemetry" Version="4.2.1" />
+        <PackageReference Include="Ihis.FhirEngine.WebApi.Extensions.AuditLogging.Serilog" Version="4.2.1" />
+        <PackageReference Include="Ihis.FhirEngine.WebApi.Extensions.Swashbuckle" Version="4.2.1" />
+        <PackageReference Include="Ihis.FhirEngine.WebApi.R5" Version="4.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="Conformance/*.StructureDefinition.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Conformance\extension-clinicalimpression-careplan.json" />
+    </ItemGroup>
+</Project>

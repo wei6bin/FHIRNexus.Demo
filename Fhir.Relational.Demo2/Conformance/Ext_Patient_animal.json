@@ -1,0 +1,124 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "patient-animal",
+  "url": "http://hl7.org/fhir/StructureDefinition/patient-animal",
+  "version": "5.0.0",
+  "name": "AnimalSpecies",
+  "title": "Animal Species",
+  "status": "draft",
+  "experimental": false,
+  "date": "2023-03-26",
+  "publisher": "HL7",
+  "description": "This extension contains details about the animal species and breed.",
+  "fhirVersion": "4.3.0",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Patient"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Animal species",
+        "definition": "The species of the animal."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "min": 1
+      },
+      {
+        "id": "Extension.extension:species",
+        "path": "Extension.extension",
+        "sliceName": "species",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Extension.extension:species.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "species"
+      },
+      {
+        "id": "Extension.extension:species.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "example",
+          "valueSet": "http://hl7.org/fhir/ValueSet/animal-species"
+        }
+      },
+      {
+        "id": "Extension.extension:breed",
+        "path": "Extension.extension",
+        "sliceName": "breed",
+        "max": "1"
+      },
+      {
+        "id": "Extension.extension:breed.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "breed"
+      },
+      {
+        "id": "Extension.extension:breed.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "example",
+          "valueSet": "http://hl7.org/fhir/ValueSet/animal-breeds"
+        }
+      },
+      {
+        "id": "Extension.extension:genderStatus",
+        "path": "Extension.extension",
+        "sliceName": "genderStatus",
+        "max": "1"
+      },
+      {
+        "id": "Extension.extension:genderStatus.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "genderStatus"
+      },
+      {
+        "id": "Extension.extension:genderStatus.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "example",
+          "valueSet": "http://hl7.org/fhir/ValueSet/animal-genderstatus"
+        }
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://hl7.org/fhir/StructureDefinition/patient-animal"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "max": "0"
+      }
+    ]
+  }
+}

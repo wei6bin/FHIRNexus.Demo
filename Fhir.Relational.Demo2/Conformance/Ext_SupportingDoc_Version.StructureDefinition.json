@@ -1,0 +1,37 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://fhir.synapxe.sg/StructureDefinition/ext_supportingdoc_version",
+  "name": "Ext_SupportingDoc_Version",
+  "status": "draft",
+  "fhirVersion": "4.3.0",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Appointment"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://fhir.synapxe.sg/StructureDefinition/ext_supportingdoc_version"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

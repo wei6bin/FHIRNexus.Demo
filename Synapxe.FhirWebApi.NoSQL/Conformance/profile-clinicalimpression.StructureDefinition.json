@@ -1,0 +1,30 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ClinicalImpressionCustom",
+  "url": "https://example.org/fhir/StructureDefinition/ClinicalImpressionCustom",
+  "name": "ClinicalImpressionCustom",
+  "status": "draft",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ClinicalImpression",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/ClinicalImpression",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ClinicalImpression.extension:clinicalImpressionCarePlan",
+        "path": "ClinicalImpression.extension",
+        "sliceName": "clinicalImpressionCarePlan",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://example.org/fhir/StructureDefinition/ClinicalImpression-CarePlan"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
