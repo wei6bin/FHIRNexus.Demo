@@ -1,0 +1,68 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "patient-birthTime",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+      "valueCode": "pa"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+      "valueInteger": 1
+    }
+  ],
+  "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+  "version": "4.3.0",
+  "name": "BirthTime",
+  "title": "Birth Time",
+  "status": "draft",
+  "experimental": false,
+  "date": "2021-01-17T07:06:13+11:00",
+  "publisher": "HL7",
+  "description": "The time of day that the Patient was born. This includes the date to ensure that the timezone information can be communicated effectively.",
+  "fhirVersion": "4.3.0",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    }
+  ],
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Patient.birthDate"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Time of day of birth",
+        "definition": "The time of day that the Patient was born. This includes the date to ensure that the timezone information can be communicated effectively.",
+        "max": "1"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://hl7.org/fhir/StructureDefinition/patient-birthTime"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ]
+      }
+    ]
+  }
+}
