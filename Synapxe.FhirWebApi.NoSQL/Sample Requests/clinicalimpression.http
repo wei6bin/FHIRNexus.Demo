@@ -22,14 +22,17 @@ Content-Type: application/fhir+json
 	},
   "note": [
     {
-      "text": "Patient presents with fever and fatigue"
+      "text": "Patient presents with fever, fatigue"
     }
   ]
 }
 
-
 ###
 GET {{baseUrl}}/ClinicalImpression?note-content:contains=fever,breath
+X-Ihis-SourceApplication: {{applicationId}}
+
+### serach partial sentense contains `,`
+GET {{baseUrl}}/ClinicalImpression?note-content:contains=fever\,%20fatigue
 X-Ihis-SourceApplication: {{applicationId}}
 
 ###
