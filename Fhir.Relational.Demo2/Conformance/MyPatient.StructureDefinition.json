@@ -8,5 +8,33 @@
   "abstract": false,
   "type": "Patient",
   "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
-  "derivation": "constraint"
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:sliceIdentifier",
+        "path": "Patient.identifier",
+        "sliceName": "sliceIdentifier"
+      },
+      {
+        "id": "Patient.identifier:sliceIdentifier2",
+        "path": "Patient.identifier",
+        "sliceName": "sliceIdentifier2"
+      }
+    ]
+  }
 }

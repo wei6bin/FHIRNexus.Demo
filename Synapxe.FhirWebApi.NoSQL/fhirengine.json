@@ -38,7 +38,8 @@
         "AcceptedTypes": [
           "Appointment",
           "ClinicalImpression",
-          "CarePlan"
+          "CarePlan",
+          "Patient"
         ]
       }
     }

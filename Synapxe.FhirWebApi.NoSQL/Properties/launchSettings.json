@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Synapxe.FhirWebApi.NoSQL": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:7074",
+      "launchUrl": "index.html"
+    }
+  }
+}
