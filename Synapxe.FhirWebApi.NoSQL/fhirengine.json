@@ -6,6 +6,10 @@
     "Metadata": "Conformance",
     "Merge": true,
     "Validate": true,
+    "ReferenceCheck": {
+      "RewriteIdentifierReference": true,
+      "AllowedRewrittenIdentifierResourceTypes": [ "Patient" ]
+    },
     "OpenTelemetryPrometheusMetrics": {
       "AspNetCoreInstrumentation": true
     },
@@ -39,7 +43,8 @@
           "Appointment",
           "ClinicalImpression",
           "CarePlan",
-          "Patient"
+          "Patient",
+          "QuestionnaireResponse",
         ]
       }
     }

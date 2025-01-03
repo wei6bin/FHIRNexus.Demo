@@ -35,7 +35,7 @@
         "ConnectionString": "Local",
         "AllowedInteractions": [ "Create", "Read", "Vread", "Update", "Delete", "SearchType", "OperationType", "OperationInstance" ],
         "AcceptedTypes": [
-          "Appointment", "Patient"
+          "Appointment", "Patient", "QuestionnaireResponse"
         ]
       }
     }

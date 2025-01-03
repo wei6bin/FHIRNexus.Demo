@@ -106,6 +106,31 @@
           "identifier"
         ]
       }
+    },
+
+    {
+      "fullUrl": "https://fhir.synapxe.sg/SearchParameter/QuestionnaireResponse-author-patient",
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "QuestionnaireResponse-author-patient",
+        "url": "https://fhir.synapxe.sg/SearchParameter/QuestionnaireResponse-author-patient",
+        "version": "0.1.0",
+        "name": "QuestionnaireResponse-author-patient",
+        "status": "draft",
+        "experimental": false,
+        "date": "2021-01-01T09:29:23+11:00",
+        "publisher": "Integrated Health Information Systems Pte Ltd (IHiS)",
+        "description": "The author of the CarePlan",
+        "code": "author-patient",
+        "base": [
+          "QuestionnaireResponse"
+        ],
+        "type": "reference",
+        "expression": "QuestionnaireResponse.author.where(resolve() is Patient)",
+        "target": [
+          "Patient"
+        ]
+      }
     }
   ]
 }

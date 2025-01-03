@@ -172,6 +172,43 @@
               "documentation": "Searches the patient resource."
             }
           ]
+        },
+        {
+          "type": "QuestionnaireResponse",
+          "interaction": [
+            {
+              "code": "read",
+              "documentation": "Retrieves a questionnaire response resource by id."
+            },
+            {
+              "code": "vread",
+              "documentation": "Retrieves a questionnaire response resource by id and version."
+            },
+            {
+              "code": "history-instance",
+              "documentation": "Searches the questionnaire response resource instance version history."
+            },
+            {
+              "code": "history-type",
+              "documentation": "Searches the questionnaire response resource version history."
+            },
+            {
+              "code": "create",
+              "documentation": "Creates a questionnaire response resource."
+            },
+            {
+              "code": "update",
+              "documentation": "Updates a questionnaire response resource."
+            },
+            {
+              "code": "patch",
+              "documentation": "Updates a questionnaire response resource."
+            },
+            {
+              "code": "search-type",
+              "documentation": "Searches the questionnaire response resource."
+            }
+          ]
         }
       ]
     }

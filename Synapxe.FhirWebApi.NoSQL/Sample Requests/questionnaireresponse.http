@@ -1,0 +1,94 @@
+@baseUrl=https://localhost:7074
+@applicationId=test-app
+
+POST {{baseUrl}}/QuestionnaireResponse
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+	"resourceType": "QuestionnaireResponse",
+	"partOf": [
+		{
+			"reference": "Procedure/f201"
+		}
+	],
+	"questionnaire": "urn:uuid:95eaedf7-8a24-478a-8300-39acc44c746b",
+	"status": "completed",
+	"encounter": {
+		"reference": "Encounter/example"
+	},
+	"authored": "2013-02-19T14:15:00-05:00",
+	"author": {
+		"type": "Patient",
+		"identifier": {
+			"system": "https://fhir.synapxe.sg/NamingSystem/nric",
+			"value": "S1234567D"
+		}
+	}
+}
+
+### define custom search parameter `author-patient`, turn on ReferenceCheck at fhirengine setting
+GET {{baseUrl}}/QuestionnaireResponse?author-patient.identifier=S1234567D
+X-Ihis-SourceApplication: {{applicationId}}
+
+### search by patient resource id with custom search parameter
+GET {{baseUrl}}/QuestionnaireResponse?author-patient=928AC6AB998C4C0CBA2CE03565B380FF
+X-Ihis-SourceApplication: {{applicationId}}
+
+### search by patient resource id with default search parameter
+GET {{baseUrl}}/QuestionnaireResponse?author=928AC6AB998C4C0CBA2CE03565B380FF
+X-Ihis-SourceApplication: {{applicationId}}
+
+### [x] default search parameter not able to recognize the author reference type is Patient, hence `.identifier` failed.
+GET {{baseUrl}}/QuestionnaireResponse?author.identifier=S1234567D
+X-Ihis-SourceApplication: {{applicationId}}
+
+### equivalent search with POST
+POST {{baseUrl}}/QuestionnaireResponse/_search
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "patient.identifier",
+      "valueString": "S1234567D"
+    },
+    {
+      "name": "_total",
+      "valueString": "accurate"
+    }
+  ]
+}
+
+### put patient reference at `subject`
+POST {{baseUrl}}/QuestionnaireResponse
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+	"resourceType": "QuestionnaireResponse",
+	"partOf": [
+		{
+			"reference": "Procedure/f201"
+		}
+	],
+	"questionnaire": "urn:uuid:95eaedf7-8a24-478a-8300-39acc44c746b",
+	"status": "completed",
+	"encounter": {
+		"reference": "Encounter/example"
+	},
+	"authored": "2013-02-19T14:15:00-05:00",
+	"subject": {
+		"type": "Patient",
+		"identifier": {
+			"system": "https://fhir.synapxe.sg/NamingSystem/nric",
+			"value": "S1234567D"
+		}
+	}
+}
+
+### use default search parameter: QuestionnaireResponse.subject.where(resolve() is Patient), the subject is resolved as Patient resource
+GET {{baseUrl}}/QuestionnaireResponse?patient.identifier=S1234567D
+X-Ihis-SourceApplication: {{applicationId}}
