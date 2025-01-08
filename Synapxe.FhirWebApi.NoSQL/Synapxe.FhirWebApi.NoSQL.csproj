@@ -28,4 +28,10 @@
     <ItemGroup>
       <AdditionalFiles Include="Conformance\extension-clinicalimpression-careplan.json" />
     </ItemGroup>
+
+    <ItemGroup>
+      <None Update="R5\hl7.terminology.r5.tgz">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 </Project>
