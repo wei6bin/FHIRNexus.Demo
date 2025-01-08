@@ -289,6 +289,39 @@
               "type": "reference"
             }
           ]
+        },
+        {
+          "type": "AllergyIntolerance",
+          "interaction": [
+            {
+              "code": "create"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "search-type"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "history-type"
+            },
+            {
+              "code": "patch"
+            },
+            {
+              "code": "delete"
+            }
+          ],
+          "versioning": "versioned"
         }
       ]
     }

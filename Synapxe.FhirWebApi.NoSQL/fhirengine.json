@@ -38,14 +38,7 @@
           ]
         },
         "IncludeStandardSearchParams": true,
-        "ConnectionString": "Local",
-        "AcceptedTypes": [
-          "Appointment",
-          "ClinicalImpression",
-          "CarePlan",
-          "Patient",
-          "QuestionnaireResponse",
-        ]
+        "ConnectionString": "Local"
       }
     }
   }
