@@ -322,6 +322,43 @@
             }
           ],
           "versioning": "versioned"
+        },
+        {
+          "type": "Observation",
+          "interaction": [
+            {
+              "code": "read",
+              "documentation": "Retrieves an observation resource by id."
+            },
+            {
+              "code": "vread",
+              "documentation": "Retrieves an observation resource by id and version."
+            },
+            {
+              "code": "history-instance",
+              "documentation": "Searches the observation resource instance version history."
+            },
+            {
+              "code": "history-type",
+              "documentation": "Searches the observation resource version history."
+            },
+            {
+              "code": "create",
+              "documentation": "Creates an observation resource."
+            },
+            {
+              "code": "update",
+              "documentation": "Updates an observation resource."
+            },
+            {
+              "code": "patch",
+              "documentation": "Updates an observation resource."
+            },
+            {
+              "code": "search-type",
+              "documentation": "Searches the observation resource."
+            }
+          ]
         }
       ]
     }

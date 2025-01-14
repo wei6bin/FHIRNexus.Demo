@@ -1,0 +1,137 @@
+@baseUrl=https://localhost:7074
+@applicationId=test-app
+
+# @name createObservationRequest
+
+POST {{baseUrl}}/Observation
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "29463-7",
+        "display": "Body weight"
+      }
+    ]
+  },
+  "valueQuantity": {
+    "value": 85,
+    "unit": "kg",
+    "system": "http://unitsofmeasure.org",
+    "code": "kg"
+  },
+  "subject": {
+    "reference": "Patient/testpatient"
+  },
+  "effectiveDateTime": "2023-10-01T12:00:00+08:00"
+}
+
+###
+POST {{baseUrl}}/Observation
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "29463-7",
+        "display": "Body weight"
+      }
+    ]
+  },
+  "valueQuantity": {
+    "value": 86,
+    "unit": "kg",
+    "system": "http://unitsofmeasure.org",
+    "code": "kg"
+  },
+  "subject": {
+    "reference": "Patient/testpatient"
+  },
+  "effectiveDateTime": "2023-10-01T12:00:00+08:00"
+}
+
+###
+POST {{baseUrl}}/Observation
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "29463-7",
+        "display": "Body weight"
+      }
+    ]
+  },
+  "valueQuantity": {
+    "value": 79,
+    "unit": "kg",
+    "system": "http://unitsofmeasure.org",
+    "code": "kg"
+  },
+  "subject": {
+    "reference": "Patient/testpatient"
+  },
+  "effectiveDateTime": "2023-10-01T12:00:00+08:00"
+}
+
+
+###
+POST {{baseUrl}}/Observation
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "8302-2",
+        "display": "Body height"
+      }
+    ]
+  },
+  "valueQuantity": {
+    "value": 175,
+    "unit": "cm",
+    "system": "http://unitsofmeasure.org",
+    "code": "cm"
+  },
+  "subject": {
+    "reference": "Patient/testpatient"
+  },
+  "effectiveDateTime": "2023-10-01T12:00:00+08:00"
+}
+
+### https://darrendevitt.com/a-fhir-server-comparison-using-quantity-searches/
+### case 1
+GET {{baseUrl}}/Observation?code=29463-7&value-quantity=gt80
+X-Ihis-SourceApplication: {{applicationId}}
+
+### case 2
+GET {{baseUrl}}/Observation?code=29463-7&value-quantity=gt80|http://unitsofmeasure.org|kg
+X-Ihis-SourceApplication: {{applicationId}}
+
+### case 3
+GET {{baseUrl}}/Observation?code=29463-7&value-quantity=ap80|http://unitsofmeasure.org|kg
+X-Ihis-SourceApplication: {{applicationId}}
+
+### case 4
+GET {{baseUrl}}/Observation?code-value-quantity=29463-7$gt80|http://unitsofmeasure.org|kg
+X-Ihis-SourceApplication: {{applicationId}}
