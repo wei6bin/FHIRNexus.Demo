@@ -12,12 +12,12 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="Ihis.FhirEngine.Data.Extensions.AutoMapper" Version="5.0.0-dev-*" />
-        <PackageReference Include="Ihis.FhirEngine.Data.Relational.SqlServer" Version="5.0.0-dev-*" />
-        <PackageReference Include="Ihis.FhirEngine.Extensions.OpenTelemetry" Version="5.0.0-dev-*" />
-        <PackageReference Include="Ihis.FhirEngine.WebApi.Extensions.AuditLogging.Serilog" Version="5.0.0-dev-*" />
-        <PackageReference Include="Ihis.FhirEngine.WebApi.Extensions.Swashbuckle" Version="5.0.0-dev-*" />
-        <PackageReference Include="Ihis.FhirEngine.WebApi.R4" Version="5.0.0-dev-*" />
+        <PackageReference Include="Ihis.FhirEngine.Data.Extensions.AutoMapper" Version="4.3.0" />
+        <PackageReference Include="Ihis.FhirEngine.Data.Relational.SqlServer" Version="4.3.0" />
+        <PackageReference Include="Ihis.FhirEngine.Extensions.OpenTelemetry" Version="4.3.0" />
+        <PackageReference Include="Ihis.FhirEngine.WebApi.Extensions.AuditLogging.Serilog" Version="4.3.0" />
+        <PackageReference Include="Ihis.FhirEngine.WebApi.Extensions.Swashbuckle" Version="4.3.0" />
+        <PackageReference Include="Ihis.FhirEngine.WebApi.R4" Version="4.3.0" />
     </ItemGroup>
 
     <ItemGroup>
