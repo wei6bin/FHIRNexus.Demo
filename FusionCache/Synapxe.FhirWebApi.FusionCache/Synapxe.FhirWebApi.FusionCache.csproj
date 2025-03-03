@@ -21,6 +21,7 @@
         <PackageReference Include="Ihis.FhirEngine.WebApi.Extensions.AuditLogging.Serilog" Version="4.3.0" />
         <PackageReference Include="Ihis.FhirEngine.WebApi.Extensions.Swashbuckle" Version="4.3.0" />
         <PackageReference Include="Ihis.FhirEngine.WebApi.R5" Version="4.3.0" />
+		<PackageReference Include="Ihis.FhirEngine.Extensions.FusionCache" Version="4.3.0" />
     </ItemGroup>
 
     <ItemGroup>

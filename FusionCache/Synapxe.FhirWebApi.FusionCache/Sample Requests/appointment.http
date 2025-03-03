@@ -11,8 +11,8 @@ Content-Type: application/fhir+json
 {
   "resourceType": "Appointment",
   "status": "proposed",
-  "start": "2120-01-01T12:00:00+08:00",
-  "end": "2120-01-01T12:30:00+08:00",
+  "start": "2120-01-01T13:00:00+08:00",
+  "end": "2120-01-01T13:30:00+08:00",
   "participant": [
     {
       "actor": {
@@ -34,7 +34,7 @@ Content-Type: application/fhir+json
 
 
 ### Get Appointment Request:
-@apptId = {{createAppointmentRequest.response.body.$.id}}
+@apptId = 6B35466549434877AF6D2C637E9B2D77
 # @name getAppointmentRequest
 GET {{baseUrl}}/Appointment/{{apptId}}
 x-api-key: {{apiKey}}
@@ -154,4 +154,4 @@ POST {{baseUrl}}/Appointment/_search
 x-api-key: {{apiKey}}
 Content-Type: application/x-www-form-urlencoded
 
-status=cancelled
+status=proposed

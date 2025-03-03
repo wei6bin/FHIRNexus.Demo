@@ -11,12 +11,14 @@
       "BlockFilterlessSearch": true
     },
     "OpenTelemetryPrometheusMetrics": {
+      "FusionCacheInstrumentation": true,
       "AspNetCoreInstrumentation": true,
       "HttpClientInstrumentation": true,
       "SqlClientInstrumentation": true,
       "RuntimeInstrumentation": true
     },
     "OpenTelemetryTracing": {
+      "FusionCacheInstrumentation": true,
       "AspNetCoreInstrumentation": true,
       "RedisInstrumentation": true,
       "SqlClientInstrumentation": {
@@ -24,10 +26,9 @@
       }
     },
     "Authentication": "Synapxe.FhirWebApi.FusionCache.Security.HeadersAuthenticationHandler",
-    "ResourceRepositoryCache": {
+    "FusionCacheResourceRepository": {
       "GlobalExpiration": "01:00:00",
-      "UseRedis": "redis",
-      "AllowCacheDisable": true
+      "UseRedisWithBackplane": "redis"
     }
   },
   "Handlers": {
