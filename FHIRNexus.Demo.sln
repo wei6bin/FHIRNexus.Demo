@@ -13,6 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fhir.Relational.Demo2.Integ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Synapxe.FhirWebApi.NoSQL.IntegrationTests", "Synapxe.FhirWebApi.NoSQL.IntegrationTests\Synapxe.FhirWebApi.NoSQL.IntegrationTests.csproj", "{50889187-C806-464D-9413-8E8D58726D76}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FusionCache", "FusionCache", "{84BC7F3E-5A48-4C35-9DF6-15DF261112D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synapxe.FhirWebApi.FusionCache.AppHost", "FusionCache\Synapxe.FhirWebApi.FusionCache.AppHost\Synapxe.FhirWebApi.FusionCache.AppHost.csproj", "{4B6DF090-AF34-4B22-BAB8-407E56EC7408}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synapxe.FhirWebApi.FusionCache", "FusionCache\Synapxe.FhirWebApi.FusionCache\Synapxe.FhirWebApi.FusionCache.csproj", "{07D9BDEC-0B59-4399-94AC-EE923D87DAC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +41,14 @@ Global
 		{50889187-C806-464D-9413-8E8D58726D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50889187-C806-464D-9413-8E8D58726D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50889187-C806-464D-9413-8E8D58726D76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B6DF090-AF34-4B22-BAB8-407E56EC7408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B6DF090-AF34-4B22-BAB8-407E56EC7408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B6DF090-AF34-4B22-BAB8-407E56EC7408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B6DF090-AF34-4B22-BAB8-407E56EC7408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D9BDEC-0B59-4399-94AC-EE923D87DAC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D9BDEC-0B59-4399-94AC-EE923D87DAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D9BDEC-0B59-4399-94AC-EE923D87DAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D9BDEC-0B59-4399-94AC-EE923D87DAC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +56,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4F6BA6C9-AD33-4A09-B835-3D6267D5408E} = {DE36CCA1-8EE8-496A-B243-35F708D9CB89}
 		{50889187-C806-464D-9413-8E8D58726D76} = {DE36CCA1-8EE8-496A-B243-35F708D9CB89}
+		{4B6DF090-AF34-4B22-BAB8-407E56EC7408} = {84BC7F3E-5A48-4C35-9DF6-15DF261112D2}
+		{07D9BDEC-0B59-4399-94AC-EE923D87DAC8} = {84BC7F3E-5A48-4C35-9DF6-15DF261112D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B91B384-2F11-40EE-ABCF-8F3224169D89}
