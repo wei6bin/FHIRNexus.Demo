@@ -1,0 +1,36 @@
+@baseUrl=https://localhost:7074
+@applicationId=test-app
+
+POST {{baseUrl}}/CarePlan/_search
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/x-www-form-urlencoded
+
+_total=accurate&status=draft&_include=CarePlan%3Asubject&_include=CarePlan%3Acare-team
+
+###
+
+POST {{baseUrl}}/CarePlan/_search
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/json
+
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "_total",
+            "valueString": "accurate"
+        },
+        {
+            "name": "status",
+            "valueString": "draft"
+        },
+        {
+            "name": "_include",
+            "valueString": "CarePlan:subject"
+        },
+        {
+            "name": "_include",
+            "valueString": "CarePlan:care-team"
+        }
+    ]
+}

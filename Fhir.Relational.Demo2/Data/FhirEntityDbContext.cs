@@ -12,7 +12,7 @@ namespace Fhir.Relational.Demo2.Data
             : base(options)
         {
 #if DEBUG
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
 #endif
         }

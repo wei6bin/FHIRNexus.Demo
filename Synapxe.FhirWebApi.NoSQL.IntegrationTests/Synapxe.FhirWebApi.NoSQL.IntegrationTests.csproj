@@ -14,7 +14,7 @@
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.*" />
     <PackageReference Include="SpecFlow.xUnit" Version="3.9.*" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.*" />
-    <PackageReference Include="Ihis.FhirEngine.Data.Testing.R5" Version="4.2.1" />
+    <PackageReference Include="Ihis.FhirEngine.Data.Testing.R5" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,7 +10,7 @@ Content-Type: application/fhir+json
   "identifier": [
     {
       "system": "https://fhir.synapxe.sg/NamingSystem/nric",
-      "value": "S1234567A"
+      "value": "S1234567B"
     }
   ],
   "active": true,
@@ -20,7 +20,7 @@ Content-Type: application/fhir+json
     }
   ],
   "gender": "male",
-  "birthDate": "2000-11-12",
+  "birthDate": "1980-01-01",
   "deceasedBoolean": true,
   "maritalStatus": {
     "coding": [
@@ -88,6 +88,10 @@ X-Ihis-SourceApplication: {{applicationId}}
 
 ### search by identifier
 GET {{baseUrl}}/Patient?identifier=S1234567D
+X-Ihis-SourceApplication: {{applicationId}}
+
+### search by birthdate partial search
+GET {{baseUrl}}/Patient?birthdate=ge1980&_total=accurate
 X-Ihis-SourceApplication: {{applicationId}}
 
 ### patch to update the patient first address

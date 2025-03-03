@@ -8,35 +8,38 @@ X-Ihis-SourceApplication: {{applicationId}}
 Content-Type: application/fhir+json
 
 {
-  "resourceType": "Appointment",
-  "extension": [
-    {
-      "url": "https://fhir.synapxe.sg/StructureDefinition/ext_supportingdoc_version",
-      "valueString": "1.0.0"
-    }
-  ],
-  "identifier": [
-    {
-      "system": "https://fhir.synapxe.sg/NamingSystem/appt-identifier",
-      "value": "00001"
-    }
-  ],
-  "status": "proposed",
-  "start": "2120-01-01T12:00:00+08:00",
-  "end": "2120-01-01T12:30:00+08:00",
-  "participant": [
-    {
-      "actor": {
-        "reference": "Patient/testpatient"
-      },
-      "status": "tentative"
-    }
-  ]
+	"resourceType": "Appointment",
+	"extension": [
+		{
+			"url": "https://fhir.synapxe.sg/StructureDefinition/ext_supportingdoc_version",
+			"valueString": "1.0.0"
+		}
+	],
+	"identifier": [
+		{
+			"system": "https://fhir.synapxe.sg/NamingSystem/appt-identifier",
+			"value": "00001"
+		}
+	],
+	"status": "proposed",
+	"start": "2120-01-01T12:00:00+08:00",
+	"end": "2120-01-01T12:30:00+08:00",
+	"participant": [
+		{
+			"actor": {
+				"type": "Patient",
+				"identifier": {
+					"value": "123456"
+				}
+			},
+			"status": "tentative"
+		}
+	]
 }
 
 
 ### Get Appointment Request:
-@apptId = {{createAppointmentRequest.response.body.$.id}}
+@apptId = 45F4F168A4FF4C5B99E780E5E868373C
 # @name getAppointmentRequest
 GET {{baseUrl}}/Appointment/{{apptId}}
 X-Ihis-SourceApplication: {{applicationId}}
