@@ -33,6 +33,26 @@ Content-Type: application/fhir+json
   }
 }
 
+### search by identifier
+POST {{baseUrl}}/Patient/_search
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/json
+
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "_total",
+            "valueString": "accurate"
+        },
+        {
+            "name": "identifier",
+            "valueString": "S1234567B"
+        }
+    ]
+}
+
+
 ### create patient with address
 POST {{baseUrl}}/Patient
 X-Ihis-SourceApplication: {{applicationId}}

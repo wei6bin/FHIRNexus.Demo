@@ -37,7 +37,7 @@ Content-Type: application/fhir+json
     ]
   },
   "patient": {
-    "reference": "Patient/4543B619C87C4C0582675963F4EDA1B0",
+    "reference": "Patient/0B04F6A24C8C4E7C8598FCC409D33B4E",
     "display": "Tan Ah Meng"
   },
   "recordedDate": "2024-12-27",
@@ -58,4 +58,27 @@ Content-Type: application/fhir+json
       ]
     }
   ]
+}
+
+###
+POST {{baseUrl}}/AllergyIntolerance/_search
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/json
+
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "_total",
+            "valueString": "accurate"
+        },
+        {
+            "name": "clinical-status",
+            "valueString": "active"
+        },
+        {
+            "name": "_include",
+            "valueString": "AllergyIntolerance:patient"
+        }
+    ]
 }

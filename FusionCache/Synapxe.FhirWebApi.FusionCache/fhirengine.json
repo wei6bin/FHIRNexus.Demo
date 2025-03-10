@@ -28,7 +28,12 @@
     "Authentication": "Synapxe.FhirWebApi.FusionCache.Security.HeadersAuthenticationHandler",
     "FusionCacheResourceRepository": {
       "GlobalExpiration": "01:00:00",
-      "UseRedisWithBackplane": "redis"
+      "UseRedisWithBackplane": "redis",
+      "Options": {
+        "CacheName": "FCService",
+        "CacheKeyPrefix": "myPrefix",
+        "EnableAutoRecovery": true
+      }
     }
   },
   "Handlers": {

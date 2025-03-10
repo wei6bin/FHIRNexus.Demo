@@ -10,6 +10,11 @@
       "RewriteIdentifierReference": true,
       "AllowedRewrittenIdentifierResourceTypes": [ "Patient" ]
     },
+    "SearchConfiguration": {
+      "BlockFilterlessSearch": false,
+      "MaxItemCountPerSearch": 1000,
+      "DefaultItemCountPerSearch": 1000
+    },
     "OpenTelemetryPrometheusMetrics": {
       "AspNetCoreInstrumentation": true
     },

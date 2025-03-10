@@ -34,7 +34,7 @@ Content-Type: application/fhir+json
 
 
 ### Get Appointment Request:
-@apptId = 6B35466549434877AF6D2C637E9B2D77
+@apptId = EC4D735FE69B4BF8A32C84B1B36A4981
 # @name getAppointmentRequest
 GET {{baseUrl}}/Appointment/{{apptId}}
 x-api-key: {{apiKey}}
