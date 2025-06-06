@@ -1,0 +1,263 @@
+2025-06-06 12:56:01.148 +08:00 [INF] User profile is available. Using 'C:\Users\Tonym\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-06 12:56:01.491 +08:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-06-06 12:56:01.680 +08:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2025-06-06 12:56:01.730 +08:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE appointment (
+    id text NOT NULL,
+    version_id bigint NOT NULL,
+    is_deleted boolean NOT NULL,
+    body jsonb NOT NULL,
+    created_utc timestamp with time zone NOT NULL,
+    modified_utc timestamp with time zone NOT NULL,
+    created_by text,
+    modified_by text,
+    CONSTRAINT "PK_appointment" PRIMARY KEY (id)
+);
+2025-06-06 12:56:01.732 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE appointment_history (
+    id text NOT NULL,
+    version_id bigint NOT NULL,
+    body jsonb NOT NULL,
+    created_utc timestamp with time zone NOT NULL,
+    modified_utc timestamp with time zone NOT NULL,
+    created_by text,
+    modified_by text,
+    CONSTRAINT "PK_appointment_history" PRIMARY KEY (id, version_id)
+);
+2025-06-06 12:56:01.734 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_appointment_body" ON appointment USING gin (body);
+2025-06-06 12:56:01.735 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_appointment_history_body" ON appointment_history USING gin (body);
+2025-06-06 12:56:03.101 +08:00 [INF] Now listening on: https://localhost:61426
+2025-06-06 12:56:03.102 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-06 12:56:03.102 +08:00 [INF] Hosting environment: Development
+2025-06-06 12:56:03.102 +08:00 [INF] Content root path: C:\workspace\repo\1.fhir\FHIRNexus.Demo\PostgreSQL\Synapxe.FhirWebApi.PostgresDoc\src\Synapxe.FhirWebApi.PostgresDoc
+2025-06-06 12:56:03.752 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 12:56:05.191 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 12:56:05.193 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 12:56:05.199 +08:00 [INF] Found extracted C:\workspace\repo\1.fhir\FHIRNexus.Demo\PostgreSQL\Synapxe.FhirWebApi.PostgresDoc\src\Synapxe.FhirWebApi.PostgresDoc\bin\Debug\net8.0\R5\specification
+2025-06-06 12:56:06.463 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 12:56:06.464 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 12:56:06.464 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 12:56:06.466 +08:00 [INF] Found extracted C:\workspace\repo\1.fhir\FHIRNexus.Demo\PostgreSQL\Synapxe.FhirWebApi.PostgresDoc\src\Synapxe.FhirWebApi.PostgresDoc\bin\Debug\net8.0\R5\specification
+2025-06-06 12:56:07.534 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 12:56:07.536 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 3789.2828ms
+2025-06-06 12:56:07.693 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 12:56:07.694 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1231.4639ms
+2025-06-06 12:56:37.703 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 12:56:37.704 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 12:56:37.704 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 12:56:37.715 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 12:56:37.715 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 11.9748ms
+2025-06-06 12:57:07.730 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 12:57:07.730 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 12:57:07.731 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 12:57:07.732 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 12:57:07.732 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 2.0247ms
+2025-06-06 12:57:37.744 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 12:57:37.744 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 12:57:37.744 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 12:57:37.746 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 12:57:37.746 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 2.5766ms
+2025-06-06 12:58:07.761 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 12:58:07.761 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 12:58:07.761 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 12:58:07.762 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 12:58:07.763 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.9228ms
+2025-06-06 12:58:37.764 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 12:58:37.765 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 12:58:37.765 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 12:58:37.766 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 12:58:37.766 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 2.479ms
+2025-06-06 12:59:07.769 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 12:59:07.769 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 12:59:07.769 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 12:59:07.771 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 12:59:07.771 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 2.2776ms
+2025-06-06 12:59:37.786 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 12:59:37.786 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 12:59:37.786 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 12:59:37.788 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 12:59:37.788 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 2.7081ms
+2025-06-06 13:00:07.807 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:00:07.808 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:00:07.808 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:00:07.809 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:00:07.809 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.649ms
+2025-06-06 13:00:37.822 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:00:37.822 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:00:37.822 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:00:37.824 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:00:37.824 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 2.0766ms
+2025-06-06 13:01:07.830 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:01:07.830 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:01:07.831 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:01:07.832 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:01:07.832 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.794ms
+2025-06-06 13:01:37.843 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:01:37.843 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:01:37.844 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:01:37.845 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:01:37.845 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.641ms
+2025-06-06 13:02:07.866 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:02:07.866 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:02:07.866 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:02:07.867 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:02:07.867 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.8834ms
+2025-06-06 13:02:37.875 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:02:37.875 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:02:37.875 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:02:37.876 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:02:37.876 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.7433ms
+2025-06-06 13:03:07.882 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:03:07.883 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:03:07.883 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:03:07.884 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:03:07.884 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.9671ms
+2025-06-06 13:03:37.899 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:03:37.899 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:03:37.899 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:03:37.900 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:03:37.901 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.8179ms
+2025-06-06 13:04:07.916 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:04:07.916 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:04:07.917 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:04:07.918 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:04:07.918 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.5318ms
+2025-06-06 13:04:37.923 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:04:37.924 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:04:37.924 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:04:37.925 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:04:37.925 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.8976ms
+2025-06-06 13:05:07.940 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:05:07.940 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:05:07.940 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:05:07.941 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:05:07.941 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.6287ms
+2025-06-06 13:05:37.952 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:05:37.953 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:05:37.953 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:05:37.954 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:05:37.954 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.8151ms
+2025-06-06 13:06:07.972 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:06:07.972 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:06:07.972 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:06:07.974 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:06:07.974 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.8637ms
+2025-06-06 13:06:37.980 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:06:37.980 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:06:37.980 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:06:37.982 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:06:37.982 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.7144ms
+2025-06-06 13:07:07.989 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:07:07.989 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:07:07.989 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:07:07.990 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:07:07.990 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.7061ms
+2025-06-06 13:07:28.363 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7430/Appointment - application/fhir+json 399
+2025-06-06 13:07:28.364 +08:00 [INF] Executing endpoint 'HTTP: POST /{typeParameter:fhirResource} => ProcessWithBodyType'
+2025-06-06 13:07:29.994 +08:00 [ERR] Handler execution failed
+System.InvalidOperationException: Unable to find matching expression
+   at Ihis.FhirEngine.Data.PostgreSQL.Search.PostgresQueryGenerator`1.<VisitSearchParameter>g__RemoveResourceType|9_0(String expression, <>c__DisplayClass9_0& ) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.PostgreSQL/Search/PostgresQueryGenerator.cs:line 154
+   at Ihis.FhirEngine.Data.PostgreSQL.Search.PostgresQueryGenerator`1.VisitSearchParameter(SearchParameterExpression expression, PostgresQueryGeneratorContext`1 context) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.PostgreSQL/Search/PostgresQueryGenerator.cs:line 107
+   at Ihis.FhirEngine.Data.Search.Expressions.SearchParameterExpression.AcceptVisitor[TContext,TOutput](IExpressionVisitor`2 visitor, TContext context) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Search/Expressions/SearchParameterExpression.cs:line 33
+   at Ihis.FhirEngine.Data.PostgreSQL.Search.PostgresQueryGenerator`1.VisitMultiary(MultiaryExpression expression, PostgresQueryGeneratorContext`1 context) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.PostgreSQL/Search/PostgresQueryGenerator.cs:line 65
+   at Ihis.FhirEngine.Data.Search.Expressions.MultiaryExpression.AcceptVisitor[TContext,TOutput](IExpressionVisitor`2 visitor, TContext context) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Search/Expressions/MultiaryExpression.cs:line 71
+   at Ihis.FhirEngine.Data.PostgreSQL.Search.PostgresSearchService`1.SearchInternalAsync(SearchOptions searchOptions, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.PostgreSQL/Search/PostgresSearchService.cs:line 56
+   at Ihis.FhirEngine.Data.Search.SearchService.SearchImplAsync(IReadOnlyList`1 queryParameters, Func`2 searchOptionsFactory, Boolean isHistory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Search/SearchService.cs:line 128
+   at Ihis.FhirEngine.Data.Search.SearchService.SearchAsync(String resourceType, IReadOnlyList`1 queryParameters, Boolean isHistory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Search/SearchService.cs:line 98
+   at Ihis.FhirEngine.Data.Core.Caching.ResourceRepositoryCacheService.ExecuteSearchAndSaveToCache(IFhirContext fhirContext, String resourceType, IReadOnlyList`1 queryParameters, String cacheKey, String[] tags, Boolean isHistory, Func`2 searchResultFactory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Caching/ResourceRepositoryCacheService.cs:line 331
+   at Ihis.FhirEngine.Data.Core.Caching.ResourceRepositoryCacheService.GetSearchFromCacheOrCreate(IFhirContext fhirContext, String resourceType, IReadOnlyList`1 queryParameters, String cacheKey, String[] tags, Boolean isHistory, Func`2 searchResultFactory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Caching/ResourceRepositoryCacheService.cs:line 320
+   at Ihis.FhirEngine.Data.Core.Caching.ResourceRepositoryCacheService.ExecuteSearchAndSaveToCache(IFhirContext fhirContext, String resourceType, IReadOnlyList`1 queryParameters, String cacheKey, String[] tags, Boolean isHistory, Func`2 searchResultFactory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Caching/ResourceRepositoryCacheService.cs:line 331
+   at Ihis.FhirEngine.Data.Core.Caching.ResourceRepositoryCacheService.GetSearchFromCacheOrCreate(IFhirContext fhirContext, String resourceType, IReadOnlyList`1 queryParameters, String cacheKey, String[] tags, Boolean isHistory, Func`2 searchResultFactory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Caching/ResourceRepositoryCacheService.cs:line 320
+   at Synapxe.FhirWebApi.PostgresDoc.Handlers.AppointmentDataFhirHandler.ValidateNoAppointmentConflictAsync(IFhirContext context, Appointment appointment, CancellationToken cancellationToken) in C:\workspace\repo\1.fhir\FHIRNexus.Demo\PostgreSQL\Synapxe.FhirWebApi.PostgresDoc\src\Synapxe.FhirWebApi.PostgresDoc\Handlers\AppointmentDataFhirHandler.cs:line 64
+   at Ihis.FhirEngine.Core.Handlers.FhirHandlerExceptionWrapper.ProcessAsync(IFhirContext context, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Core/Handlers/FhirHandlerExceptionWrapper.cs:line 56
+2025-06-06 13:07:30.031 +08:00 [INF] Executed endpoint 'HTTP: POST /{typeParameter:fhirResource} => ProcessWithBodyType'
+2025-06-06 13:07:30.034 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7430/Appointment - 500 4636 application/fhir+json; charset=utf-8 1671.7291ms
+2025-06-06 13:07:37.994 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:07:37.994 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:07:37.994 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:07:37.995 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:07:37.995 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.4748ms
+2025-06-06 13:08:08.013 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:08:08.014 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:08:08.014 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:08:08.015 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:08:08.015 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.3533ms
+2025-06-06 13:08:38.022 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:08:38.023 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:08:38.023 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:08:38.024 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:08:38.024 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.5357ms
+2025-06-06 13:08:39.031 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/metadata - null null
+2025-06-06 13:08:39.031 +08:00 [INF] Executing endpoint 'HTTP: GET /metadata => ProcessGet'
+2025-06-06 13:08:39.068 +08:00 [INF] Executed endpoint 'HTTP: GET /metadata => ProcessGet'
+2025-06-06 13:08:39.069 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/metadata - 200 245039 application/fhir+json; charset=utf-8 38.1382ms
+2025-06-06 13:09:08.028 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:09:08.028 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:09:08.029 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:09:08.030 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:09:08.030 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.547ms
+2025-06-06 13:09:38.035 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:09:38.035 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:09:38.035 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:09:38.036 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:09:38.037 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.8472ms
+2025-06-06 13:10:08.048 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:10:08.048 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:10:08.048 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:10:08.049 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:10:08.049 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.5208ms
+2025-06-06 13:10:38.064 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:10:38.064 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:10:38.064 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:10:38.065 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:10:38.065 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.6636ms
+2025-06-06 13:11:08.069 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:11:08.070 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:11:08.070 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:11:08.071 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:11:08.071 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 1.5737ms
+2025-06-06 13:11:31.303 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7430/Appointment - application/fhir+json 399
+2025-06-06 13:11:31.303 +08:00 [INF] Executing endpoint 'HTTP: POST /{typeParameter:fhirResource} => ProcessWithBodyType'
+2025-06-06 13:11:31.339 +08:00 [ERR] Handler execution failed
+System.InvalidOperationException: Unable to find matching expression
+   at Ihis.FhirEngine.Data.PostgreSQL.Search.PostgresQueryGenerator`1.<VisitSearchParameter>g__RemoveResourceType|9_0(String expression, <>c__DisplayClass9_0& ) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.PostgreSQL/Search/PostgresQueryGenerator.cs:line 154
+   at Ihis.FhirEngine.Data.PostgreSQL.Search.PostgresQueryGenerator`1.VisitSearchParameter(SearchParameterExpression expression, PostgresQueryGeneratorContext`1 context) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.PostgreSQL/Search/PostgresQueryGenerator.cs:line 107
+   at Ihis.FhirEngine.Data.Search.Expressions.SearchParameterExpression.AcceptVisitor[TContext,TOutput](IExpressionVisitor`2 visitor, TContext context) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Search/Expressions/SearchParameterExpression.cs:line 33
+   at Ihis.FhirEngine.Data.PostgreSQL.Search.PostgresQueryGenerator`1.VisitMultiary(MultiaryExpression expression, PostgresQueryGeneratorContext`1 context) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.PostgreSQL/Search/PostgresQueryGenerator.cs:line 65
+   at Ihis.FhirEngine.Data.Search.Expressions.MultiaryExpression.AcceptVisitor[TContext,TOutput](IExpressionVisitor`2 visitor, TContext context) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Search/Expressions/MultiaryExpression.cs:line 71
+   at Ihis.FhirEngine.Data.PostgreSQL.Search.PostgresSearchService`1.SearchInternalAsync(SearchOptions searchOptions, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.PostgreSQL/Search/PostgresSearchService.cs:line 56
+   at Ihis.FhirEngine.Data.Search.SearchService.SearchImplAsync(IReadOnlyList`1 queryParameters, Func`2 searchOptionsFactory, Boolean isHistory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Search/SearchService.cs:line 128
+   at Ihis.FhirEngine.Data.Search.SearchService.SearchAsync(String resourceType, IReadOnlyList`1 queryParameters, Boolean isHistory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Search/SearchService.cs:line 98
+   at Ihis.FhirEngine.Data.Core.Caching.ResourceRepositoryCacheService.ExecuteSearchAndSaveToCache(IFhirContext fhirContext, String resourceType, IReadOnlyList`1 queryParameters, String cacheKey, String[] tags, Boolean isHistory, Func`2 searchResultFactory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Caching/ResourceRepositoryCacheService.cs:line 331
+   at Ihis.FhirEngine.Data.Core.Caching.ResourceRepositoryCacheService.GetSearchFromCacheOrCreate(IFhirContext fhirContext, String resourceType, IReadOnlyList`1 queryParameters, String cacheKey, String[] tags, Boolean isHistory, Func`2 searchResultFactory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Caching/ResourceRepositoryCacheService.cs:line 320
+   at Ihis.FhirEngine.Data.Core.Caching.ResourceRepositoryCacheService.ExecuteSearchAndSaveToCache(IFhirContext fhirContext, String resourceType, IReadOnlyList`1 queryParameters, String cacheKey, String[] tags, Boolean isHistory, Func`2 searchResultFactory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Caching/ResourceRepositoryCacheService.cs:line 331
+   at Ihis.FhirEngine.Data.Core.Caching.ResourceRepositoryCacheService.GetSearchFromCacheOrCreate(IFhirContext fhirContext, String resourceType, IReadOnlyList`1 queryParameters, String cacheKey, String[] tags, Boolean isHistory, Func`2 searchResultFactory, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Data.Core/Caching/ResourceRepositoryCacheService.cs:line 320
+   at Synapxe.FhirWebApi.PostgresDoc.Handlers.AppointmentDataFhirHandler.ValidateNoAppointmentConflictAsync(IFhirContext context, Appointment appointment, CancellationToken cancellationToken) in C:\workspace\repo\1.fhir\FHIRNexus.Demo\PostgreSQL\Synapxe.FhirWebApi.PostgresDoc\src\Synapxe.FhirWebApi.PostgresDoc\Handlers\AppointmentDataFhirHandler.cs:line 64
+   at Ihis.FhirEngine.Core.Handlers.FhirHandlerExceptionWrapper.ProcessAsync(IFhirContext context, CancellationToken cancellationToken) in /agent/_work/1/s/src/Ihis.FhirEngine.Core/Handlers/FhirHandlerExceptionWrapper.cs:line 56
+2025-06-06 13:11:31.341 +08:00 [INF] Executed endpoint 'HTTP: POST /{typeParameter:fhirResource} => ProcessWithBodyType'
+2025-06-06 13:11:31.343 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7430/Appointment - 500 4636 application/fhir+json; charset=utf-8 39.5526ms
+2025-06-06 13:11:38.085 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:7430/health - null null
+2025-06-06 13:11:38.085 +08:00 [INF] FhirEngine was not authenticated. Failure message: Missing header
+2025-06-06 13:11:38.085 +08:00 [INF] Executing endpoint 'Health checks'
+2025-06-06 13:11:38.087 +08:00 [INF] Executed endpoint 'Health checks'
+2025-06-06 13:11:38.087 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:7430/health - 200 null text/plain 2.3709ms

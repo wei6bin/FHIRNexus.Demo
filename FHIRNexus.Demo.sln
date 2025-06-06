@@ -19,6 +19,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synapxe.FhirWebApi.FusionCa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synapxe.FhirWebApi.FusionCache", "FusionCache\Synapxe.FhirWebApi.FusionCache\Synapxe.FhirWebApi.FusionCache.csproj", "{07D9BDEC-0B59-4399-94AC-EE923D87DAC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostgreSQL", "PostgreSQL", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synapxe.FhirWebApi.PostgresDoc", "PostgreSQL\Synapxe.FhirWebApi.PostgresDoc\src\Synapxe.FhirWebApi.PostgresDoc\Synapxe.FhirWebApi.PostgresDoc.csproj", "{5E8FEF24-AE08-427D-AC3C-BEE1EBC65A3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synapxe.FhirWebApi.PostgresDoc.AppHost", "PostgreSQL\Synapxe.FhirWebApi.PostgresDoc\src\Synapxe.FhirWebApi.PostgresDoc.AppHost\Synapxe.FhirWebApi.PostgresDoc.AppHost.csproj", "{A102EA07-669C-4453-BEF7-EDCAF9625D6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synapxe.FhirWebApi.PostgresDoc.IntegrationTests", "PostgreSQL\Synapxe.FhirWebApi.PostgresDoc\tests\Synapxe.FhirWebApi.PostgresDoc.IntegrationTests\Synapxe.FhirWebApi.PostgresDoc.IntegrationTests.csproj", "{2D3E8AA3-AA36-4B64-B6BF-BC40CEC0754B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +57,18 @@ Global
 		{07D9BDEC-0B59-4399-94AC-EE923D87DAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07D9BDEC-0B59-4399-94AC-EE923D87DAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07D9BDEC-0B59-4399-94AC-EE923D87DAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E8FEF24-AE08-427D-AC3C-BEE1EBC65A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8FEF24-AE08-427D-AC3C-BEE1EBC65A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8FEF24-AE08-427D-AC3C-BEE1EBC65A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8FEF24-AE08-427D-AC3C-BEE1EBC65A3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A102EA07-669C-4453-BEF7-EDCAF9625D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A102EA07-669C-4453-BEF7-EDCAF9625D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A102EA07-669C-4453-BEF7-EDCAF9625D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A102EA07-669C-4453-BEF7-EDCAF9625D6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D3E8AA3-AA36-4B64-B6BF-BC40CEC0754B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3E8AA3-AA36-4B64-B6BF-BC40CEC0754B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D3E8AA3-AA36-4B64-B6BF-BC40CEC0754B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D3E8AA3-AA36-4B64-B6BF-BC40CEC0754B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +78,9 @@ Global
 		{50889187-C806-464D-9413-8E8D58726D76} = {DE36CCA1-8EE8-496A-B243-35F708D9CB89}
 		{4B6DF090-AF34-4B22-BAB8-407E56EC7408} = {84BC7F3E-5A48-4C35-9DF6-15DF261112D2}
 		{07D9BDEC-0B59-4399-94AC-EE923D87DAC8} = {84BC7F3E-5A48-4C35-9DF6-15DF261112D2}
+		{5E8FEF24-AE08-427D-AC3C-BEE1EBC65A3E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{A102EA07-669C-4453-BEF7-EDCAF9625D6D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{2D3E8AA3-AA36-4B64-B6BF-BC40CEC0754B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B91B384-2F11-40EE-ABCF-8F3224169D89}

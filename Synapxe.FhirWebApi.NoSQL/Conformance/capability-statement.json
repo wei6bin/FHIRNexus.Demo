@@ -57,8 +57,22 @@
           "type": "ValueSet",
           "interaction": [
             {
-              "code": "read",
-              "documentation": "Returns the Structure Definition."
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "versioning": "no-version"
+        },
+        {
+          "type": "CodeSystem",
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
             }
           ],
           "versioning": "no-version"

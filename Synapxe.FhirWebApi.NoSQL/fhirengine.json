@@ -34,7 +34,9 @@
           "EnableRetryOnFailure": true,
           "ReferencedTypes": [
             "Patient",
-            "Practitioner"
+            "Practitioner",
+            "CodeSystem",
+            "ValueSet"
           ]
         },
         "IncludeStandardSearchParams": true,

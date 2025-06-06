@@ -1,0 +1,31 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Synapxe Pte. Ltd.</Authors>
+    <Copyright>Synapxe Pte. Ltd. $([System.DateTime]::Now.ToString(yyyy))</Copyright>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition=" $(GIT_VERSION) != '' ">
+      <_Parameter1>CommitHash</_Parameter1>
+      <_Parameter2>$(GIT_VERSION)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition=" $(BUILD_NUMBER) != '' ">
+      <_Parameter1>BuildNumber</_Parameter1>
+      <_Parameter2>$(BUILD_NUMBER)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.8.0.113526">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Using Include="Hl7.Fhir.Model.Task" Alias="FhirTask" />
+    <Using Include="System.Threading.Tasks.Task" Alias="Task" />
+  </ItemGroup>
+</Project>

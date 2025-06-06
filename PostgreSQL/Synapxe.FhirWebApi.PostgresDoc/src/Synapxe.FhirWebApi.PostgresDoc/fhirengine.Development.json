@@ -5,12 +5,12 @@
       "RegisterMiddleware": true,
       "ExamplesJsonPath": "fhir-examples.json",
       "ExcludePaths": [ "/metadata" ],
-      "ExcludeResources": [ "OperationDefinition", "StructureDefinition", "SearchParameter" ],
+      "ExcludeResources": [ "OperationDefinition", "StructureDefinition", "SearchParameter", "CodeSystem", "ValueSet" ],
       "ExcludeConditionalUpdatePath": true,
       "AuthenticationSchemes": {
         "Test": {
           "In": "Header",
-          "Name": "X-Ihis-SourceApplication",
+          "Name": "x-api-key",
           "Type": "ApiKey",
           "Example": "CCDP"
         }
@@ -38,11 +38,8 @@
   "Handlers": {
     "Repository": {
       "FhirDataStore<@NoSql>": {
-        "UseSqlDocument": {
-          "Migration": {
-            "DeployDatabase": true,
-            "CreateNewDatabase": true
-          }
+        "UsePostgreSQL": {
+          "AutoCreateTables": true
         }
       }
     }

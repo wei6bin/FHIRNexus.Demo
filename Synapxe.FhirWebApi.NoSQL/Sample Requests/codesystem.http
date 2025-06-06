@@ -1,0 +1,37 @@
+# @baseUrl=https://localhost:7074
+# @baseUrl=http://hapi.fhir.org/baseR4
+# @baseUrl=http://hapi.fhir.org/baseR5
+# @baseUrl=https://localhost:7567
+@baseUrl=https://server.fire.ly
+@applicationId=test-app
+
+### search by url - not supported in FHIRNexus, but well supported in HAPI both R4 and R5, and in Firely
+GET {{baseUrl}}/CodeSystem?url=http://hl7.org/fhir/encounter-status&_total=accurate
+X-Ihis-SourceApplication: {{applicationId}}
+
+### get filter-less search - supported in HAPI both R4 and R5
+GET {{baseUrl}}/CodeSystem?_total=accurate
+X-Ihis-SourceApplication: {{applicationId}}
+
+### get by id - works for both R4 and R5, but not for HAPI
+GET {{baseUrl}}/CodeSystem/encounter-status
+X-Ihis-SourceApplication: {{applicationId}}
+
+### post search
+POST {{baseUrl}}/CodeSystem/_search
+Content-Type: application/json
+X-Ihis-SourceApplication: {{applicationId}}
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "url",
+      "valueString": "http://hl7.org/fhir/encounter-status"
+    },
+    {
+      "name": "_total",
+      "valueString": "accurate"
+    }
+  ]
+}

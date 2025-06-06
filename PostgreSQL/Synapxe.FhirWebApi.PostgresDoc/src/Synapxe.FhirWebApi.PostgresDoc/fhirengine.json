@@ -1,0 +1,43 @@
+{
+  "EnableHandlerAutoRegistration": true,
+  "PublicConformanceResources": true,
+  "UseFhirController": false,
+  "SystemPlugins": {
+    "Metadata": "Conformance",
+    "Merge": true,
+    "Validate": true,
+    "BatchAndTransaction": true,
+    "SearchConfiguration": {
+      "BlockFilterlessSearch": true
+    },
+    "OpenTelemetryPrometheusMetrics": {
+      "AspNetCoreInstrumentation": true,
+      "RuntimeInstrumentation": true
+    },
+    "OpenTelemetryTracing": {
+      "AspNetCoreInstrumentation": true,
+      "RedisInstrumentation": true,
+      "Npgsql": true
+    },
+    "Authentication": "Synapxe.FhirWebApi.PostgresDoc.Security.HeadersAuthenticationHandler",
+    "ResourceRepositoryCache": {
+      "GlobalExpiration": "01:00:00",
+      "UseRedis": "redis",
+      "AllowCacheDisable": true
+    }
+  },
+  "Handlers": {
+    "Repository": {
+      "FhirDataStore<@NoSql>": {
+        "UsePostgreSQL": {
+          "AutoCreateTables": false
+        },
+        "IncludeStandardSearchParams": true,
+        "ConnectionString": "data",
+        "AcceptedTypes": [
+          "Appointment"
+        ]
+      }
+    }
+  }
+}
